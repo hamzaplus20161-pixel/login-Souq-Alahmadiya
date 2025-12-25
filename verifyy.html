@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>جاري التحقق...</title>
 
-  <!-- Supabase v2 (ESM) -->
   <script type="module">
     import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
@@ -14,16 +13,16 @@
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
     async function verifyUser() {
-      const { data, error } = await supabase.auth.getSession();
+      const { data } = await supabase.auth.getSession();
 
-      if (error || !data.session) {
-        alert("فشل التحقق من الحساب ❌");
+      if (data?.session) {
+        // ✅ الحساب اتفعل
+        window.location.href = "index8.html"; // صفحة السوق
+      } else {
+        // ❌ فشل التحقق
+        alert("فشل التحقق من الحساب");
         window.location.href = "login.html";
-        return;
       }
-
-      // ✅ الحساب اتفعل بنجاح
-      window.location.href = "index8.html"; // صفحة السوق
     }
 
     verifyUser();
