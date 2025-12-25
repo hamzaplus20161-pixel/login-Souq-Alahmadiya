@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>جاري التحقق...</title>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+<h2>جاري التحقق من حسابك...</h2>
+
+<script>
+  const SUPABASE_URL = "https://nzdvboeaocarlcgoeixu.supabase.co"
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im56ZHZib2Vhb2NhcmxjZ29laXh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ3NTI3NTAsImV4cCI6MjA4MDMyODc1MH0.mA-hf6902t2xLH_kUedHmy0sQrjGIAmoCqN2rHZ6K_E"
+
+  const supabase = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  )
+
+  async function checkUser() {
+    const { data, error } = await supabase.auth.getUser()
+
+    if (data.user) {
+      // ✔ الحساب متفعل
+      window.location.href = "index8.html"
+    } else {
+      // ❌ مش متسجل دخول
+      window.location.href = "login.html"
+    }
+  }
+
+  checkUser()
+</script>
+
+</body>
+</html>
